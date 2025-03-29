@@ -90,6 +90,9 @@ export default function Index() {
         <Link href={'/flashcard'}>
           <Typography>fiszka test</Typography>
         </Link>
+        <Link href={"/flashcard-edit"}>
+          <Typography>fiszka edit test</Typography>
+        </Link>
 
         <View style={{ flex: 1, justifyContent: 'space-around' }}>
           <View style={styles.content}>

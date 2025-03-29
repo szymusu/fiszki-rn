@@ -30,11 +30,9 @@
     "continue": "Kontynuuj",
     "finish": "Zakończ"
   },
-  "summary": {
-    "summary": "Podsumowanie",
-    "knowIt": "Umiem",
-    "needToReview": "Tyle jeszcze muszę powtórzyć",
-    "finish": "Zakończ",
-    "of": "z"
+  "test": {
+    "knowIt": "Znam",
+    "dontKnowIt": "Nie znam",
+    "next": "Następny"
   }
 }

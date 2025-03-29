@@ -1,22 +1,16 @@
 import {BackgroundContainer, Button, Typography} from "@/components";
 import {Dimensions, StyleSheet, View} from "react-native";
-import {useMemo, useState} from "react";
+import {useState} from "react";
 import {_flashCards} from "@/api/loremIpsumator";
-import FlipCard from "react-native-flip-card";
 import {useTranslation} from "react-i18next";
 import {useRouter} from "expo-router";
 
-export default function Flashcard() {
+export default function EditFlashcard() {
   const { t } = useTranslation()
   const router = useRouter()
 
-  const cards = useMemo(_flashCards, [])
+  const [cards, setCards] = useState(_flashCards())
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
-  const [isCurrentRevealed, setIsCurrentRevealed] = useState(false)
-  const [isFlipped, setIsFlipped] = useState(false)
-
-  // card flips when this value changes, no matter if its true or false, so it doesent actually mean anything lol
-  const [flipTrigger, setFlipTrigger] = useState(false)
 
   return (
     <BackgroundContainer imagePath={require('../assets/images/home.png')}>
@@ -26,51 +20,59 @@ export default function Flashcard() {
           {`${currentCardIndex + 1} z ${cards.length}`}
         </Typography>
 
-        <FlipCard
-          style={{ width: Dimensions.get("screen").width * .8 }}
-          flipHorizontal={true}
-          flipVertical={false}
-          onFlipStart={() => {
-            if (!isFlipped)  {
-              setIsCurrentRevealed(true)
-            }
-            setIsFlipped(!isFlipped)
-          }}
-          flip={flipTrigger}
-        >
-          {/* Face Side */}
+        <View style={{ width: Dimensions.get("screen").width * .8 }}>
           <View style={[styles.card, {
             backgroundColor: "#ffe",
           }]}>
             <Typography>{cards[currentCardIndex].question}</Typography>
           </View>
-          {/* Back Side */}
+
           <View style={[styles.card, {
             backgroundColor: "#eef",
           }]}>
             <Typography>{cards[currentCardIndex].answer}</Typography>
           </View>
-        </FlipCard>
+        </View>
 
         <View style={{
           flexDirection: "row",
-          gap: 100
+          justifyContent: "space-between",
+          width: Dimensions.get("screen").width * .8
         }}>
-          {isCurrentRevealed &&
+          {currentCardIndex !== 0 ?
             <Button font="BOLD" onPress={() => {
-              setIsCurrentRevealed(false)
-              if (currentCardIndex === cards.length - 1) {
-                router.back()
-                return
-              }
-              setCurrentCardIndex(currentCardIndex + 1);
-              if (isFlipped) setFlipTrigger(!flipTrigger)
+              setCurrentCardIndex(currentCardIndex - 1);
             }}>
-              {currentCardIndex === cards.length - 1 ? t('challenge.back') : t('flashcard.continue')}
+              {"<-   "}
+            </Button>
+            :
+            <View />
+          }
+          {currentCardIndex !== cards.length - 1 ?
+            <Button font="BOLD" onPress={() => {
+              setCurrentCardIndex(currentCardIndex + 1);
+            }}>
+              {"->   "}
+            </Button>
+            :
+            <Button font="BOLD" onPress={() => {
+              setCards([...cards, {
+                id: -1,
+                question: "",
+                answer: "",
+                flashcard_set: cards[0].flashcard_set
+              }])
+              setCurrentCardIndex(currentCardIndex + 1)
+            }}>
+              {"+    "}
             </Button>
           }
-
         </View>
+
+        <Button font="BOLD" onPress={router.back}>
+          {t("create.save")}
+        </Button>
+
       </View>
     </BackgroundContainer>
   )
@@ -91,6 +93,7 @@ const styles = StyleSheet.create({
   },
   card: {
     minHeight: 200,
+    marginBottom: 50,
     justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 3, },
