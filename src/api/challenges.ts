@@ -16,7 +16,7 @@ export type FlashCardUpload = {
 };
 
 
-type FlashCardResponse = {
+export type FlashCardResponse = {
   id: number;
   answer: string;
   question: string;
@@ -37,7 +37,7 @@ export const fetchFlashCardSet = async (id: string): Promise<FlashCardSet> => {
     const flashCardSets = await axios.get<FlashCardSet>(`flash-card-sets/${id}/`);
     return flashCardSets.data;
 };
-  
+
 export const createFlashCardSet = async (title: string): Promise<FlashCardSet> => {
   const response = await axios.post<FlashCardSet>(`flash-card-sets/`, { title, description: title, isActive: true });
 
