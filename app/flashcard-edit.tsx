@@ -1,5 +1,5 @@
 import {BackgroundContainer, Button, Typography} from "@/components";
-import {Dimensions, StyleSheet, View} from "react-native";
+import {Dimensions, StyleSheet, TextInput, View} from "react-native";
 import {useState} from "react";
 import {_flashCards} from "@/api/loremIpsumator";
 import {useTranslation} from "react-i18next";
@@ -24,13 +24,35 @@ export default function EditFlashcard() {
           <View style={[styles.card, {
             backgroundColor: "#ffe",
           }]}>
-            <Typography>{cards[currentCardIndex].question}</Typography>
+            <TextInput
+              style={{
+                padding: 20,
+                textAlign: "center",
+                fontFamily: "Jost_300Light"
+              }}
+              onChangeText={value => {
+                cards[currentCardIndex].question = value
+                setCards([...cards])
+              }}
+              value={cards[currentCardIndex].question}
+            />
           </View>
 
           <View style={[styles.card, {
             backgroundColor: "#eef",
           }]}>
-            <Typography>{cards[currentCardIndex].answer}</Typography>
+            <TextInput
+              style={{
+                padding: 20,
+                textAlign: "center",
+                fontFamily: "Jost_300Light"
+              }}
+              onChangeText={value => {
+                cards[currentCardIndex].answer = value
+                setCards([...cards])
+              }}
+              value={cards[currentCardIndex].answer}
+            />
           </View>
         </View>
 
