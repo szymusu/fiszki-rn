@@ -1,6 +1,8 @@
-import { TextInput } from 'react-native-paper';
-import { Typography } from './Typography';
 import { View, StyleSheet } from 'react-native';
+
+import { TextInput } from 'react-native-paper';
+
+import { Typography } from './Typography';
 
 interface CustomTextInputProps {
   label: string;
@@ -10,7 +12,13 @@ interface CustomTextInputProps {
   backgroundColor?: string;
 }
 
-export const FlashCardInput = ({ label, value, onChangeText, placeholder, backgroundColor }: CustomTextInputProps) => {
+export const FlashCardInput = ({
+  label,
+  value,
+  onChangeText,
+  placeholder,
+  backgroundColor,
+}: CustomTextInputProps) => {
   return (
     <View style={styles.container}>
       <Typography textAlign="left">{label}</Typography>
@@ -42,4 +50,3 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
 });
-

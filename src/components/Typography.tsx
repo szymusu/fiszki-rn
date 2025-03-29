@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { StyleProp, Text, type TextStyle } from 'react-native';
 
 export const baseTheme = {
   fonts: {
@@ -10,7 +10,7 @@ export const baseTheme = {
     SMALL: 14,
     MEDIUM: 16,
     LARGE: 20,
-    SUPER_LARGE: 40
+    SUPER_LARGE: 40,
   },
   color: {
     DARK: '#000',
@@ -31,15 +31,17 @@ export const Typography = ({
   font = 'LIGHT',
   size = 'MEDIUM',
   color = 'DARK',
- textAlign = 'center',
-}: TypographyType) => {
+  textAlign = 'center',
+  ...rest
+}: TypographyType & TextStyle) => {
   return (
     <Text
       style={{
         fontFamily: baseTheme.fonts[font],
         fontSize: baseTheme.fontSizes[size],
         color: baseTheme.color[color],
-        textAlign
+        textAlign,
+        ...rest,
       }}
     >
       {children}

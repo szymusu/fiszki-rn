@@ -6,13 +6,24 @@ type ButtonProps = {
   children: string;
   onPress(): void;
   textColor?: keyof typeof baseTheme.color;
+  fontSize?: keyof typeof baseTheme.fontSizes;
+  font?: keyof typeof baseTheme.fonts;
   style?: StyleProp<ViewStyle>;
 };
 
-export const Button = ({ children, onPress, style, textColor = 'LIGHT' }: ButtonProps) => {
+export const Button = ({
+  children,
+  onPress,
+  style,
+  fontSize = 'MEDIUM',
+  textColor = 'LIGHT',
+  font = 'REGULAR',
+}: ButtonProps) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
-      <Typography color={textColor}>{children}</Typography>
+      <Typography color={textColor} size={fontSize} font={font}>
+        {children}
+      </Typography>
     </TouchableOpacity>
   );
 };
