@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "flashcards-workshop-mobile",
-    "slug": "flashcards-workshop-mobile",
+    "name": "fiszki",
+    "slug": "fiszki",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
