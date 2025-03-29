@@ -29,5 +29,12 @@
     "translationPlaceholder": "Wpisz tłumaczenie...",
     "continue": "Kontynuuj",
     "finish": "Zakończ"
+  },
+  "summary": {
+    "summary": "Podsumowanie",
+    "knowIt": "Umiem",
+    "needToReview": "Tyle jeszcze muszę powtórzyć",
+    "finish": "Zakończ",
+    "of": "z"
   }
 }

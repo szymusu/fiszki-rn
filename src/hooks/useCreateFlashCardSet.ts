@@ -15,7 +15,6 @@ export function useCreateFlashCardSet() {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.sets() });
-      router.navigate(`/create/${data.id}`);
     },
     onError: (error) => {
       console.error('Mutation failed with error:', error);

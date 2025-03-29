@@ -51,7 +51,7 @@ export default function Index() {
           </View>
 
           {data && data.length > 0 && (
-            <View style={{ ...styles.content }}>
+            <View style={styles.content}>
               <Typography textAlign="center" width={(Dimensions.get('screen').width / 10) * 7}>
                 {t('home.challengeYourself')}
               </Typography>

@@ -1,21 +1,27 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { useQuery } from '@tanstack/react-query';
+import LogoIcon from 'assets/svgs/logo.svg';
 
 import { fetchFlashCardSets } from '@/api/challenges';
 import { queryKeys } from '@/api/queryKyes';
 import { BackgroundContainer, Typography } from '@/components';
 import { useCreateFlashCardSet } from '@/hooks';
+import { useFetchFlashCards } from '@/hooks';
 
-const Challenge = () => {
+interface ChallengeProps {
+  id: string;
+}
+
+const Challenge = ({ id }: ChallengeProps) => {
   const { mutate } = useCreateFlashCardSet();
-  const { data } = useQuery({ queryKey: queryKeys.sets(), queryFn: fetchFlashCardSets });
+  const { data } = useFetchFlashCards(id);
 
   return (
     <BackgroundContainer>
-        <Typography size="LARGE" font="REGULAR">
-            Uzupełnij ten widok :)
-          </Typography>
+      <View style={styles.innerContainer}>
+        <LogoIcon />
+      </View>
     </BackgroundContainer>
   );
 };

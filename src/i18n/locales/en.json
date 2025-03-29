@@ -21,7 +21,7 @@
     "placeholder": "Enter name here...",
     "save": "Save",
     "cancel": "Cancel"
-  }, 
+  },
   "flashcard": {
     "title": "Flashcard",
     "enterBothSides": "Enter both sides of the card",
@@ -34,7 +34,8 @@
     "summary": "Summary",
     "knowIt": "I know it",
     "needToReview": "I still need to review this",
-    "finish": "Finish"
+    "finish": "Finish",
+    "of": "of"
   },
   "test": {
     "knowIt": "Known",

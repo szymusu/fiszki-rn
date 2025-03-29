@@ -39,6 +39,7 @@ export const Popup = ({ visible, onClose, onSave }: PopupProps) => {
             <Button
               onPress={() => {
                 onSave(name);
+                setName('');
                 onClose();
               }}
             >
