@@ -1,0 +1,33 @@
+{
+  "home": {
+    "startHere": "Zacznij tutaj",
+    "createFlashcards": "Stwórz swój zestaw fiszek od zera",
+    "challengeYourself": "Mając już stworzone fiszki, podejmij wyzwanie i sprawdź czego się nauczyłeś",
+    "testYourself": "Sprawdź się"
+  },
+  "challenge": {
+    "selectFlashcards": "Wybierz zestaw fiszek do nauki i sprawdź się",
+    "createNewFlashcards": "Lub stwórz nowe fiszki",
+    "back": "Powrót"
+  },
+  "settings": {
+    "testYourself": "Sprawdź się",
+    "editSet": "Edytuj zestaw",
+    "deleteSet": "Usuń zestaw",
+    "back": "Powrót"
+  },
+  "create": {
+    "enterSetName": "Podaj nazwę zestawu",
+    "placeholder": "Tutaj wpisz nazwę...",
+    "save": "Zapisz",
+    "cancel": "Anuluj"
+  },
+  "flashcard": {
+    "title": "Fiszka",
+    "enterBothSides": "Wpisz obydwie karteczki",
+    "textPlaceholder": "Wpisz tekst...",
+    "translationPlaceholder": "Wpisz tłumaczenie...",
+    "continue": "Kontynuuj",
+    "finish": "Zakończ"
+  }
+}

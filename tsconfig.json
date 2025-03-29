@@ -1,0 +1,28 @@
+{
+  "include": ["app/**/*", ".expo/types/**/*.ts", "expo-env.d.ts", "src/@types/i18next.d.ts", "src/@types/svg.d.ts"],
+  "extends": "expo/tsconfig.base",
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "types": ["react-native", "jest"],
+    "lib": ["ES6", "ESNext"],
+    "module": "ESNext",
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "baseUrl": "./",
+    "rootDir": "./",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noErrorTruncation": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}

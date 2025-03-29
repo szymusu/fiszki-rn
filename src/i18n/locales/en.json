@@ -1,0 +1,44 @@
+{
+  "home": {
+    "startHere": "Start here",
+    "createFlashcards": "Create your flashcard set from scratch",
+    "challengeYourself": "Once you have created your flashcards, take the challenge and see what you've learned",
+    "testYourself": "Test yourself"
+  },
+  "challenge": {
+    "selectFlashcards": "Select a flashcard set to learn\n and test yourself",
+    "createNewFlashcards": "Or create new flashcards",
+    "back": "Back"
+  },
+  "settings": {
+    "testYourself": "Test yourself",
+    "editSet": "Edit set",
+    "deleteSet": "Delete set",
+    "back": "Back"
+  },
+  "create": {
+    "enterSetName": "Enter set name",
+    "placeholder": "Enter name here...",
+    "save": "Save",
+    "cancel": "Cancel"
+  }, 
+  "flashcard": {
+    "title": "Flashcard",
+    "enterBothSides": "Enter both sides of the card",
+    "textPlaceholder": "Enter text...",
+    "translationPlaceholder": "Enter translation...",
+    "continue": "Continue",
+    "finish": "Finish"
+  },
+  "summary": {
+    "summary": "Summary",
+    "knowIt": "I know it",
+    "needToReview": "I still need to review this",
+    "finish": "Finish"
+  },
+  "test": {
+    "knowIt": "Known",
+    "dontKnowIt": "Unknown",
+    "next": "Next"
+  }
+}
