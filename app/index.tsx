@@ -73,7 +73,6 @@ export default function Index() {
   };
 
   const handleTestYourself = async () => {
-    console.log(await createFlashCard('20', 'siema', 'elo'));
     router.navigate('/sets');
   };
 
