@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import {Alert, StyleSheet, View} from 'react-native';
 
 import { useTranslation } from 'react-i18next';
 
@@ -6,12 +6,15 @@ import { BackgroundContainer, Button, Popup, Typography } from '@/components';
 import LogoIcon from '../assets/svgs/logo.svg';
 import { useState } from 'react';
 import { useCreateFlashCardSet} from '@/hooks';
+import {fetchFlashCardSets} from "@/api/challenges";
+import {useFetchFlashCardSets} from "@/hooks/useFetchFlashCardSets";
 
 export default function Index() {
   const { t } = useTranslation();
   // const router = useRouter();
   const [popupVisible, setPopupVisible] = useState(false);
   const { mutate } = useCreateFlashCardSet();
+  const { status, data, error, isFetching } = useFetchFlashCardSets();
 
   const handleCreateFlashCards = () => {
       setPopupVisible(true)
@@ -30,12 +33,15 @@ export default function Index() {
   return (
     <BackgroundContainer imagePath={require('../assets/images/home.png')}>
       <View style={styles.innerContainer}>
-      <Popup
-        visible={popupVisible}
-        onClose={() => setPopupVisible(false)}
-        onSave={handleSave}
-      />
+        <Popup
+          visible={popupVisible}
+          onClose={() => setPopupVisible(false)}
+          onSave={handleSave}
+        />
         <LogoIcon />
+
+        <Typography>{status === "success" ? data?.length.toString() : "loading"}</Typography>
+
         <View style={styles.content}>
           <Typography>{t('home.createFlashcards')}</Typography>
           <Button onPress={handleCreateFlashCards}>{t('home.startHere')}</Button>
@@ -53,8 +59,8 @@ const styles = StyleSheet.create({
     paddingVertical: 100,
   },
   content: {
-    rowGap: 10, 
-    marginBottom: 10, 
+    rowGap: 10,
+    marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },

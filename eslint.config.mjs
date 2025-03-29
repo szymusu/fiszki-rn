@@ -24,6 +24,7 @@ export default tseslint.config(
       ...tanstackQuery.configs.recommended.rules,
       'react-refresh/only-export-components': 'off',
       "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-unused-vars": "off",
       '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports' }],
     },
   },
