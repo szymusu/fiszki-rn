@@ -1,17 +1,24 @@
 import {Typography} from "./Typography";
-import {StyleSheet, View} from "react-native";
+import {Pressable, StyleSheet, View} from "react-native";
 import type {FlashCardResponse} from "@/api/challenges";
+import {useState} from "react";
 
 export default function FlashCardDisplay({card}: {card: FlashCardResponse}) {
+    const [isReverse, setIsReverse] = useState(false)
+
     return (
         <View style={{
             flexDirection: "row",
             padding: 30
         }}>
-            <View style={style.card}>
-                <Typography>{card.question}</Typography>
-                <Typography>{card.answer}</Typography>
-            </View>
+            <Pressable
+                style={[style.card, {
+                    backgroundColor: isReverse ? "#eef" : "#ffe",
+                }]}
+                onPress={() => setIsReverse(!isReverse)}
+            >
+                <Typography>{isReverse ? card.answer : card.question}</Typography>
+            </Pressable>
 
         </View>
     )
@@ -20,7 +27,6 @@ export default function FlashCardDisplay({card}: {card: FlashCardResponse}) {
 const style = StyleSheet.create({
     card: {
         flex: 1,
-        backgroundColor: "#ffe",
         minHeight: 200,
         justifyContent: "center",
         shadowColor: "#000",

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
-import { useRouter } from 'expo-router';
+import {Link, useRouter} from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
 import { BackgroundContainer, Button, Popup, Typography } from '@/components';
@@ -41,6 +41,10 @@ export default function Index() {
         <View style={{ flex: 1 }}>
           <LogoIcon />
         </View>
+
+        <Link href={"/flashcard"}>
+          <Typography>fiszka test</Typography>
+        </Link>
 
         <View style={{ flex: 1, justifyContent: 'space-around' }}>
           <View style={styles.content}>
