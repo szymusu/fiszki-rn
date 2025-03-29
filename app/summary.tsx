@@ -8,7 +8,7 @@ import { BackgroundContainer, Button, Typography } from '@/components';
 import LogoIcon from '../assets/svgs/logo.svg';
 
 const Summary = () => {
-  const { total, known } = useLocalSearchParams();
+  const { total, known, id } = useLocalSearchParams();
 
   const { t } = useTranslation();
 
@@ -33,7 +33,7 @@ const Summary = () => {
         <Typography size="LARGE">{`${parseInt(total as string) - parseInt(known as string)} ${t('summary.of')} ${total}`}</Typography>
       </View>
       <Button
-        onPress={() => router.back()}
+        onPress={() => router.replace(`/flashcard_options?id=${id}`)}
         style={{ width: Dimensions.get('screen').width / 2, marginBottom: 50, alignSelf: 'center' }}
       >
         {t('summary.finish')}

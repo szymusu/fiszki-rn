@@ -1,14 +1,56 @@
 import { useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, TextInput, View } from 'react-native';
 
-import {Link, useRouter} from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
+import { createFlashCard } from '@/api/challenges';
 import { BackgroundContainer, Button, Popup, Typography } from '@/components';
 import { useCreateFlashCardSet } from '@/hooks';
 import { useFetchFlashCardSets } from '@/hooks/useFetchFlashCardSets';
 
 import LogoIcon from '../assets/svgs/logo.svg';
+
+interface PopupProps {
+  onClose: () => void;
+  onSave: (name: string) => void;
+}
+
+const HomePopup = ({ onSave, onClose }: PopupProps) => {
+  const [name, setName] = useState('');
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <Typography textAlign="left">{t('create.enterSetName')}</Typography>
+      <TextInput
+        style={styles.input}
+        placeholder={t('create.placeholder')}
+        placeholderTextColor="#999"
+        value={name}
+        onChangeText={setName}
+      />
+      <View style={styles.buttonContainer}>
+        <Button
+          onPress={onClose}
+          style={{ backgroundColor: 'white', borderColor: '#112249', borderWidth: 1 }}
+          textColor="DARK"
+        >
+          {t('create.cancel')}
+        </Button>
+        <Button
+          onPress={() => {
+            onSave(name);
+            setName('');
+            onClose();
+          }}
+        >
+          {t('create.save')}
+        </Button>
+      </View>
+    </>
+  );
+};
 
 export default function Index() {
   const { t } = useTranslation();
@@ -30,19 +72,23 @@ export default function Index() {
     mutate(name);
   };
 
-  const handleTestYourself = () => {
+  const handleTestYourself = async () => {
+    console.log(await createFlashCard('20', 'siema', 'elo'));
     router.navigate('/sets');
   };
 
   return (
     <BackgroundContainer imagePath={require('../assets/images/home.png')}>
       <View style={styles.innerContainer}>
-        <Popup visible={popupVisible} onClose={() => setPopupVisible(false)} onSave={handleSave} />
+        <Popup
+          visible={popupVisible}
+          children={<HomePopup onSave={handleSave} onClose={() => setPopupVisible(false)} />}
+        />
         <View style={{ flex: 1 }}>
           <LogoIcon />
         </View>
 
-        <Link href={"/flashcard"}>
+        <Link href={'/flashcard'}>
           <Typography>fiszka test</Typography>
         </Link>
 
@@ -82,5 +128,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  input: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    color: '#333',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

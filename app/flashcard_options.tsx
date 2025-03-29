@@ -1,4 +1,5 @@
-import { View, StyleSheet, Dimensions, Alert } from 'react-native';
+import { useEffect } from 'react';
+import { View, StyleSheet, Dimensions, Alert, BackHandler } from 'react-native';
 
 import { useQueryClient } from '@tanstack/react-query';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -31,6 +32,19 @@ const FlashCardOptions = () => {
     }
   };
 
+  useEffect(() => {
+    const backAction = () => {
+      router.navigate('/sets');
+      return true;
+    };
+
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+    };
+  }, []);
+
   return (
     <BackgroundContainer>
       <View style={styles.innerContainer}>
@@ -42,7 +56,11 @@ const FlashCardOptions = () => {
         )}
       </View>
       <View style={styles.buttonsContainer}>
-        <Button onPress={() => router.navigate('/flashcard')} font="BOLD" style={styles.button}>
+        <Button
+          onPress={() => router.navigate(`/flashcard?id=${id}`)}
+          font="BOLD"
+          style={styles.button}
+        >
           {t('settings.testYourself')}
         </Button>
         <Button onPress={() => console.log()} font="BOLD" style={styles.button}>

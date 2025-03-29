@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'expo-router';
 
 import { queryClient } from '@/api/client';
 import { queryKeys } from '@/api/queryKyes';
@@ -7,13 +6,11 @@ import { queryKeys } from '@/api/queryKyes';
 import { createFlashCardSet } from '../api/challenges';
 
 export function useCreateFlashCardSet() {
-  const router = useRouter();
-
   return useMutation({
     mutationFn: (title: string) => {
       return createFlashCardSet(title);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.sets() });
     },
     onError: (error) => {
